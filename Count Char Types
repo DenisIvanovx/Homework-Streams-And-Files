@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.ArrayList;
+
+/**
+ * Created by express on 21-Oct-15.
+ */
+public class CountCharacterTypes {
+    public static void main(String[] args) {
+
+        try (BufferedReader bfr = new BufferedReader(
+                new FileReader(
+                        new File("resources/words")))
+        ) {
+            ArrayList<Character> listCh = new ArrayList<>();
+
+            int vowels = 0;
+            int consonants = 0;
+            int punctuation = 0;
+
+            String s = bfr.readLine();
+
+            for (int i = 0; i < s.length(); i++) {
+                listCh.add(s.charAt(i));
+            }
+
+            try (FileWriter fw = new FileWriter(new File("resources/count-chars"), false)) {
+                for (int i = 0; i < listCh.size(); i++) {
+                    if (listCh.get(i) == 'a' || listCh.get(i) == 'e' || listCh.get(i) == 'i' ||
+                            listCh.get(i) == 'o' || listCh.get(i) == 'u') {
+                        vowels++;
+                    } else if (listCh.get(i) == '!' || listCh.get(i) == '.' || listCh.get(i) == ',' || listCh.get(i) == '?') {
+                        punctuation++;
+                    } else if (listCh.get(i) != ' ') {
+                        consonants++;
+                    }
+                }
+                fw.write("vowels: " + vowels + "\n");
+                fw.write("consonants: " + consonants + "\n");
+                fw.write("punctuation: " + punctuation + "\n");
+            }
+        }
+        catch (IOException ex) {
+
+        }
+
+    }
+}
