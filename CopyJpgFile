@@ -1,0 +1,22 @@
+import java.io.*;
+
+/**
+ * Created by express on 21-Oct-15.
+ */
+public class CopyJpgFile {
+    public static void main(String[] args) {
+        try {
+
+            FileInputStream is = new FileInputStream("resources/car1.jpg");
+            FileOutputStream fos = new FileOutputStream("resources/my-copied-picture.jpg");
+            byte[] buff = new byte[4096];
+
+            int i;
+            while ((i = is.read()) != -1) {
+                fos.write((char) i);
+            }
+        } catch (IOException ex) {
+
+        }
+    }
+}
