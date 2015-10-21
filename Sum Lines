@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/**
+ * Created by express on 21-Oct-15.
+ */
+
+public class SumLines {
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(
+                new FileReader("resources/lines"))
+        ){
+            int sum = 0;
+            while (true) {
+                String s = br.readLine();
+                if (s == null) {
+                    break;
+                }
+                for (int i = 0; i < s.length(); i++) {
+                    sum += s.charAt(i);
+                }
+                System.out.println(sum);
+            }
+        } catch (IOException e) {
+            System.out.println("Empty file");
+        }
+    }
+}
